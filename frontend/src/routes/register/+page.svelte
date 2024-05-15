@@ -1,5 +1,5 @@
 <script>
-    import { register } from '$lib/api';
+    import { register } from '$lib/api/auth';
     import { goto } from '$app/navigation';
     let email = '';
     let password = '';
