@@ -1,7 +1,7 @@
 <script>
-    import { login } from '$lib/api';
-    import { goto } from '$app/navigation';
+    import { login } from '$lib/api/auth';
     import { userStore } from '$lib/stores';
+    import { goto } from '$app/navigation';
 
     let email = '';
     let password = '';

@@ -28,6 +28,7 @@
 <header class="bg-gray-800 text-white p-4 flex justify-between items-center">
     <div class="text-2xl font-bold cursor-pointer" on:click={() => goto('/')}>My Blog</div>
     <nav class="flex items-center space-x-4">
+        <a href="/posts" class="bg-blue-500 px-3 py-1 rounded">Posts</a>
         {#if user}
             <a href="/profile">
                 <img src={user.avatarUrl} alt="User Avatar" class="w-8 h-8 rounded-full">
