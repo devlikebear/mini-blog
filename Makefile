@@ -22,7 +22,7 @@ clean:
 	$(RM) $(BIN_DIR)
 
 build-frontend:
-	cd $(FRONTEND_DIR) && $(NPM) run build
+	cd $(FRONTEND_DIR) && $(NPM) install && $(NPM) run build
 
 build-backend:
 	mkdir -p $(BIN_DIR)
@@ -30,8 +30,10 @@ build-backend:
 
 build: build-frontend build-backend
 
-dev: 
-	cd $(FRONTEND_DIR) && $(NPM) run dev & cd $(BACKEND_DIR) && $(GO) run main.go serve
+dev:
+	@if [ ! -d $(DIST_DIR) ]; then $(MAKE) build-frontend; fi
+	
+	cd $(FRONTEND_DIR) && $(NPM) install && $(NPM) run dev & cd $(BACKEND_DIR) && $(GO) run main.go serve
 
 start: build
 	cd $(BIN_DIR) && ./$(APP_NAME)
