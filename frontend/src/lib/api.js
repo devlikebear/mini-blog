@@ -37,10 +37,11 @@ export async function login(email, password) {
         throw new Error('Login failed');
     }
 
-    const user = await response.json();
-    // 아바타 URL 설정
+    const data = await response.json();
+    const user = data.record;
     user.avatarUrl = user.avatar 
         ? `${baseUrl}/files/${user.collectionId}/${user.id}/${user.avatar}` 
         : defaultAvatarUrl; // 기본 아바타 이미지 사용
+    user.token = data.token;
     return user;
 }

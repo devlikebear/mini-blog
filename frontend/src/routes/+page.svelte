@@ -20,7 +20,7 @@
 
 <main class="p-4">
     {#if user}
-        <h1 class="text-2xl font-bold">Welcome, {user.record.name}!</h1>
+        <h1 class="text-2xl font-bold">Welcome, {user.name}!</h1>
         <p>This is your personalized homepage.</p>
     {:else}
         <h1 class="text-2xl font-bold">Welcome to My Blog!</h1>

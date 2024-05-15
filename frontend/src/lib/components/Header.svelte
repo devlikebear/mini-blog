@@ -29,7 +29,9 @@
     <div class="text-2xl font-bold cursor-pointer" on:click={() => goto('/')}>My Blog</div>
     <nav class="flex items-center space-x-4">
         {#if user}
-            <img src={user.avatarUrl} alt="User Avatar" class="w-8 h-8 rounded-full">
+            <a href="/profile">
+                <img src={user.avatarUrl} alt="User Avatar" class="w-8 h-8 rounded-full">
+            </a>
             <button on:click={handleLogout} class="bg-red-500 px-3 py-1 rounded">Logout</button>
         {:else}
             <a href="/login" class="bg-blue-500 px-3 py-1 rounded">Login</a>
