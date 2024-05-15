@@ -1,17 +1,27 @@
 <script>
     import { goto } from '$app/navigation';
     import { onMount } from 'svelte';
+    import { userStore } from '$lib/stores';
+    import { get } from 'svelte/store';
 
     let user = null;
 
+    // 사용자 상태 구독
+    userStore.subscribe(value => {
+        user = value;
+    });
+
     // 세션에서 사용자 정보 가져오기
     onMount(() => {
-        user = JSON.parse(sessionStorage.getItem('user'));
+        const storedUser = JSON.parse(sessionStorage.getItem('user'));
+        if (storedUser) {
+            userStore.set(storedUser);
+        }
     });
 
     const handleLogout = () => {
         sessionStorage.removeItem('user');
-        user = null;
+        userStore.set(null); // 사용자 상태 업데이트
         goto('/login');
     };
 </script>

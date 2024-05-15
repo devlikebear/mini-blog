@@ -1,6 +1,8 @@
 <script>
     import { login } from '$lib/api';
     import { goto } from '$app/navigation';
+    import { userStore } from '$lib/stores';
+
     let email = '';
     let password = '';
     let message = '';
@@ -9,6 +11,7 @@
         try {
             const user = await login(email, password);
             sessionStorage.setItem('user', JSON.stringify(user)); // 세션에 사용자 정보 저장
+            userStore.set(user); // 사용자 상태 업데이트
             goto('/'); // 로그인 성공 후 홈으로 이동
         } catch (error) {
             message = 'Login failed: ' + error.message;
