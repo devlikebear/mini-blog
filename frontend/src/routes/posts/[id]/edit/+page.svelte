@@ -35,6 +35,10 @@
             message = 'Failed to update post: ' + error.message;
         }
     };
+
+    const handleCancel = () => {
+        history.back(); // 뒤로 가기
+    };
 </script>
 
 <main class="p-4">
@@ -49,7 +53,10 @@
                 <label class="block mb-1">Content:</label>
                 <textarea bind:value={content} required class="w-full p-2 border rounded"></textarea>
             </div>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save Changes</button>
+            <div class="flex space-x-2">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save Changes</button>
+                <button type="button" on:click={handleCancel} class="bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
+            </div>
             <p class="text-red-500">{message}</p>
         </form>
     {:else}
