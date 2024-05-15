@@ -1,13 +1,40 @@
+@import './theme.css'; /* 테마 CSS 파일을 가져오기 */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* 추가적인 전역 스타일을 여기에 추가할 수 있습니다. */
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
-main {
-    min-height: calc(100vh - 96px); /* Header와 Footer 높이를 제외한 영역 */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+}
+
+a {
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--button-hover-bg-color);
+}
+
+button {
+  @apply px-4 py-2 rounded;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+}
+
+button:hover {
+  background-color: var(--button-hover-bg-color);
+}
+
+/* 카드 스타일 */
+.card {
+  background-color: var(--card-background-color);
+  color: var(--card-text-color);
+  @apply p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow;
 }

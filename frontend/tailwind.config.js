@@ -1,10 +1,8 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./src/**/*.{html,js,svelte,ts}",
+    './src/**/*.{html,js,svelte,ts}', // Tailwind CSS가 적용될 파일 경로
   ],
   theme: {
-    extend: {},
   },
   plugins: [],
-}
+};

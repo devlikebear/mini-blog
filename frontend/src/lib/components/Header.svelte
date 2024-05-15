@@ -1,53 +1,79 @@
 <script>
-    import { goto } from '$app/navigation';
     import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
     import { userStore } from '$lib/stores';
+    import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+    import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
+
+    export let toggleTheme;
+    export let handleLogout;
 
     let user = null;
+    let themeIcon = faMoon;
 
-    // 사용자 상태 구독
     userStore.subscribe(value => {
         user = value;
     });
 
-    // 세션에서 사용자 정보 가져오기
     onMount(() => {
-        const storedUser = JSON.parse(sessionStorage.getItem('user'));
-        if (storedUser) {
-            userStore.set(storedUser);
+        if (document.documentElement.getAttribute('data-theme') === 'dark') {
+            themeIcon = faSun;
+        } else {
+            themeIcon = faMoon;
         }
     });
 
-    const handleLogout = () => {
-        sessionStorage.removeItem('user');
-        userStore.set(null); // 사용자 상태 업데이트
-        goto('/login');
+    const handleToggleTheme = () => {
+        toggleTheme();
+        $: themeIcon = (document.documentElement.getAttribute('data-theme') === 'dark') ? faSun : faMoon;
+        
+        // if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        //     themeIcon = faSun;
+        // } else {
+        //     themeIcon = faMoon;
+        // }
     };
 </script>
 
-<header class="bg-gray-800 text-white p-4 flex justify-between items-center">
-    <div class="text-2xl font-bold cursor-pointer" on:click={() => goto('/')}>My Blog</div>
-    <nav class="flex items-center space-x-4">
-        <a href="/posts" class="bg-blue-500 px-3 py-1 rounded">Posts</a>
+<header class="bg-primary-color text-white p-4 flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+        <h1 class="text-2xl font-bold cursor-pointer" on:click={() => goto('/')}>My Blog</h1>
+        <a href="/posts" class="hover:text-button-hover-bg-color">Posts</a>
+    </div>
+    <div class="flex items-center space-x-4">
         {#if user}
+            <button on:click={handleLogout} class="text-button-text-color px-4 py-2 rounded">Logout</button>
             <a href="/profile">
                 <img src={user.avatarUrl} alt="User Avatar" class="w-8 h-8 rounded-full">
             </a>
-            <button on:click={handleLogout} class="bg-red-500 px-3 py-1 rounded">Logout</button>
         {:else}
-            <a href="/login" class="bg-blue-500 px-3 py-1 rounded">Login</a>
-            <a href="/register" class="bg-green-500 px-3 py-1 rounded">Register</a>
+            <a href="/login" class="text-button-text-color px-4 py-2 rounded">Login</a>
+            <a href="/register" class="text-button-text-color px-4 py-2 rounded">Register</a>
         {/if}
-    </nav>
+        <button on:click={handleToggleTheme} class="text-button-text-color px-4 py-2 rounded">
+            <FontAwesomeIcon icon={themeIcon} />
+        </button>
+    </div>
 </header>
 
 <style>
-    nav a {
-        text-decoration: none;
-        color: white;
+    header {
+        background-color: var(-background-color);
+        color: var(--text-color);
+    }
+   
+
+    a {
+        color: var(--text-color);
     }
 
-    nav a:hover {
-        text-decoration: underline;
+    a:hover {
+        color: var(--button-hover-bg-color);
+    }
+
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
     }
 </style>

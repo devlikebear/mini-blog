@@ -1,0 +1,25 @@
+:root {
+  --primary-color: #1a202c;
+  --secondary-color: #2d3748;
+  --accent-color: #4a5568;
+  --background-color: #f7fafc;
+  --text-color: #2d3748;
+  --button-bg-color: #3182ce;
+  --button-hover-bg-color: #2b6cb0;
+  --button-text-color: #302c2c;
+  --card-background-color: #efefef; /* 카드 배경색 추가 */
+  --card-text-color: #2d3748; /* 카드 텍스트 색상 추가 */
+}
+
+[data-theme='dark'] {
+  --primary-color: #edf2f7;
+  --secondary-color: #e2e8f0;
+  --accent-color: #a0aec0;
+  --background-color: #1a202c;
+  --text-color: #edf2f7;
+  --button-bg-color: #2b6cb0;
+  --button-hover-bg-color: #2c5282;
+  --button-text-color: #ffffff;
+  --card-background-color: #2d3748; /* 다크 테마 카드 배경색 */
+  --card-text-color: #edf2f7; /* 다크 테마 카드 텍스트 색상 */
+}
