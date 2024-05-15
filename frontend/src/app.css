@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 추가적인 전역 스타일을 여기에 추가할 수 있습니다. */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+main {
+    min-height: calc(100vh - 96px); /* Header와 Footer 높이를 제외한 영역 */
+}

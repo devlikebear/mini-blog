@@ -1,6 +1,18 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+import dotenv from 'dotenv';
 
-export default defineConfig({
-	plugins: [sveltekit()]
-});
+dotenv.config();
+
+export default {
+    plugins: [sveltekit()],
+    server: {
+		port: 3000,
+        proxy: {
+            '/api': {
+                target: process.env.VITE_BACKEND_URL,
+                changeOrigin: true,
+                secure: false
+            }
+        }
+    }
+};
