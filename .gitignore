@@ -22,3 +22,6 @@ pb_data/
 # Go workspace file
 go.work
 go.work.sum
+
+# Mac OS X Finder directory files
+.DS_Store
